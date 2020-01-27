@@ -2,6 +2,7 @@ package com.example.userapp.DAL;
 
 import androidx.annotation.NonNull;
 
+import com.example.userapp.Entities.Parcel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -19,6 +20,7 @@ public class FirebaseListener<T extends Entitie> {
     private final DatabaseReference ref;
     private final Class<T> type;
     private final List<T> list;
+    private ChildEventListener RefChildEventListener;
 
     public FirebaseListener(Class<T> type,DatabaseReference ref) {
         this.ref = ref;
@@ -74,7 +76,7 @@ public class FirebaseListener<T extends Entitie> {
             }
         });
     }
-    private ChildEventListener RefChildEventListener;
+
     public void notifyToList(final NotifyDataChange<List<T>> notifyDataChange) {
         if (notifyDataChange == null)
             return;
@@ -88,6 +90,7 @@ public class FirebaseListener<T extends Entitie> {
         RefChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                //Parcel obj = dataSnapshot.getValue(Parcel.class);
                 T obj = dataSnapshot.getValue(type);
                 String id = dataSnapshot.getKey();
                 obj.setId(Long.parseLong(id));

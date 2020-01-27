@@ -58,6 +58,10 @@ public class SlideshowFragment extends Fragment {
 
     private void setParcelListener() {
         //Set listener
+
+
+
+
         dataChangeListener = DB.getInstance().notifyParcelChange(new NotifyDataChange<List<Parcel>>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
