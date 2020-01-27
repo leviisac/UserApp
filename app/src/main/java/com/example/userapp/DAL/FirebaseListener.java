@@ -2,7 +2,6 @@ package com.example.userapp.DAL;
 
 import androidx.annotation.NonNull;
 
-import com.example.userapp.Entities.Parcel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -13,10 +12,10 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import Interfaces.Entitie;
+import Interfaces.MyEntity;
 import Interfaces.NotifyDataChange;
 
-public class FirebaseListener<T extends Entitie> {
+public class FirebaseListener<T extends MyEntity> {
     private final DatabaseReference ref;
     private final Class<T> type;
     private final List<T> list;

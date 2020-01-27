@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,6 +41,9 @@ public class SlideshowFragment extends Fragment {
                 ViewModelProviders.of(this).get(SlideshowViewModel.class);
         View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
 
+
+
+
         initParcelView(root);
 
         return root;
@@ -59,9 +63,19 @@ public class SlideshowFragment extends Fragment {
     private void setParcelListener() {
         //Set listener
 
+        slideshowViewModel.getAllParcels().observe(this, new Observer<List<Parcel>>() {
+            @Override
+            public void onChanged(@Nullable final List<Parcel> p) {
+                // Update the cached copy of the words in the adapter.
+
+                    parcels = p;
+                    parcelView.setAdapter(new ParcelAdapter(getContext(), parcels));
+
+            }
+        });
 
 
-
+    /*
         dataChangeListener = DB.getInstance().notifyParcelChange(new NotifyDataChange<List<Parcel>>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -85,5 +99,9 @@ public class SlideshowFragment extends Fragment {
                 Toast.makeText(getContext(), "error to get parcels list\n" + exception.toString(), Toast.LENGTH_LONG).show();
             }
         });
+
+     */
     }
+
+
 }

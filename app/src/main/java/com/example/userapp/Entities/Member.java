@@ -1,35 +1,50 @@
 package com.example.userapp.Entities;
 
-import Interfaces.Entitie;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-public class Members implements Entitie {
+import Interfaces.MyEntity;
+
+@Entity(tableName = "members_table")
+public class Member implements MyEntity {
 
 
-    private long id;
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "id")
+    private long Id;
+
+    @ColumnInfo(name = "name")
     private String Name;
+    @ColumnInfo(name = "lastname")
     private String Last_name;
+    @ColumnInfo(name = "phone")
     private String Phone;
+    @ColumnInfo(name = "address")
     private String Adress;
 
-    public Members(String name, String last_name, String phone, String adress) {
+    public Member(Long id2 ,String name, String last_name, String phone, String adress) {
+        Id = id2;
         Name = name;
         Last_name = last_name;
         Phone = phone;
         Adress = adress;
     }
 
-    public Members() {
+    public Member() {
     }
 
     public String getcompleteName() {
         return (Name+" "+Last_name);
     }
     public long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getName() {
@@ -65,8 +80,8 @@ public class Members implements Entitie {
 
     @Override
     public String toString() {
-        return "Members{" +
-                "id=" + id +
+        return "Member{" +
+                "id=" + Id +
                 ", Name='" + Name + '\'' +
                 ", Last_name='" + Last_name + '\'' +
                 ", Phone='" + Phone + '\'' +

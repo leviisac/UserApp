@@ -9,19 +9,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.userapp.Entities.Members;
+import com.example.userapp.Entities.Member;
 
 import com.example.userapp.R;
 import com.example.userapp.ui.ViewHolder.MembersViewHolder;
 
 import java.util.List;
 
-public class MemberAdapater  extends RecyclerView.Adapter<MembersViewHolder>{
+public class MemberAdapter extends RecyclerView.Adapter<MembersViewHolder>{
 
     private Context baseContext;
-    private List<Members> members;
+    private List<Member> members;
 
-    public MemberAdapater(Context baseContext, List<Members> members) {
+    public MemberAdapter(Context baseContext, List<Member> members) {
         this.baseContext = baseContext;
         this.members = members;
     }
@@ -40,7 +40,7 @@ public class MemberAdapater  extends RecyclerView.Adapter<MembersViewHolder>{
 
     }
     public void onBindViewHolder(@NonNull MembersViewHolder holder, int position) {
-        Members membersunit = members.get(position);
+        Member membersunit = members.get(position);
         holder.setMainTitle(membersunit.getcompleteName());
         holder.setSubTitle(membersunit.getPhone());
         holder.setImage(R.drawable.user1);

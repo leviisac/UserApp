@@ -1,6 +1,6 @@
 package com.example.userapp.DAL;
 
-import com.example.userapp.Entities.Members;
+import com.example.userapp.Entities.Member;
 import com.example.userapp.Entities.Parcel;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class DB {
 
     //Observers
     private NotifyDB<Parcel> parcelNotify = new NotifyDB<>();
-    private NotifyDB<Members> membersNotify = new NotifyDB<>();
+    private NotifyDB<Member> membersNotify = new NotifyDB<>();
 
     public static DB getInstance() {
         return instance;
@@ -48,7 +48,7 @@ public class DB {
 
 
 
-    public NotifyDataChange<List<Members>> notifyMembersChange(NotifyDataChange<List<Members>> membersListener){
+    public NotifyDataChange<List<Member>> notifyMembersChange(NotifyDataChange<List<Member>> membersListener){
         membersNotify.addListener(membersListener);
         //Auto initialize
         if(membersNotify.getData().size() > 0)
@@ -56,7 +56,7 @@ public class DB {
 
         return membersListener;
     }
-    public void unNotifyMembersChange(NotifyDataChange<List<Members>> membersListener){
+    public void unNotifyMembersChange(NotifyDataChange<List<Member>> membersListener){
         membersNotify.removeListener(membersListener);
     }
 }

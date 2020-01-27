@@ -1,21 +1,33 @@
 package com.example.userapp.ui.gallery;
 
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+import com.example.userapp.DAL.MemberRepository;
+import com.example.userapp.Entities.Member;
 
-    public GalleryViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+import java.util.List;
+
+public class GalleryViewModel extends AndroidViewModel {
+
+
+
+
+    private MemberRepository mRepository;
+    private LiveData<List<Member>> mAllMembers;
+
+    public GalleryViewModel(Application app) {
+        super(app);
+        mRepository = new MemberRepository(app);
+        mAllMembers = mRepository.getAllMembers();
     }
 
+    LiveData<List<Member>> getAllMembers() { return mAllMembers; }
 
-
-    public LiveData<String> getText() {
-        return mText;
-    }
+    public void insert(Member m) { mRepository.insert(m); }
 }

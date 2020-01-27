@@ -1,20 +1,40 @@
 package com.example.userapp.Entities;
 
-import Interfaces.Entitie;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.PrimaryKey;
+import androidx.room.Entity;
 
-public class Parcel implements Entitie {
+import Interfaces.MyEntity;
 
+@Entity(tableName = "parcel_table")
+public class Parcel implements MyEntity {
 
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "id")
     private long Id;
+
+    @ColumnInfo(name = "location")
     private String Location;
+    @ColumnInfo(name = "type")
     private String Type;
+    @ColumnInfo(name = "weight")
     private String Weight;
+    @ColumnInfo(name = "fragile")
     private boolean Fragile;
+    @ColumnInfo(name = "name")
     private String Name;
+
+    @ColumnInfo(name = "address")
     private String Address;
+    @ColumnInfo(name = "senddate")
     private String SendDate;
+    @ColumnInfo(name = "expecteddate")
     private String ExpectedDate;
+    @ColumnInfo(name = "phonenumber")
     private String PhoneNumber;
+    @ColumnInfo(name = "email")
     private String Email;
 
 
