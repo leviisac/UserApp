@@ -3,7 +3,9 @@ package com.example.userapp;
 import android.os.Bundle;
 
 import com.example.userapp.DAL.DB;
+import com.example.userapp.DAL.MemberRepository;
 import com.example.userapp.Entities.Member;
+import com.example.userapp.ui.gallery.GalleryFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -24,12 +26,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
 
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +66,23 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        String data = getIntent().getExtras().getString("Name");
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.MemberTitle);
+        navUsername.setText(data);
+
         //Initialize db
         DB.getInstance();
+
+
+        /*
+        Bundle bundle = new Bundle();
+        bundle.putString("params", data);
+        GalleryFragment myObj = new GalleryFragment();
+        myObj.setArguments(bundle);
+        */
+
     }
 
     @Override
