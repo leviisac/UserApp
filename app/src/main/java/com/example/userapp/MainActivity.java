@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         String data = getIntent().getExtras().getString("Name");
-        MemberName.setAddress(data);
-        //String newData= MemberName.getMemberAddress();
+        //MemberName.setAddress(data);
+        String newData= MemberName.getMemberAddress();
 
         //MainViewModel mainViewModel;
         //mainViewModel= ViewModelProviders.of(this).get(MainViewModel.class);
