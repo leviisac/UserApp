@@ -35,6 +35,7 @@ public class SlideshowFragment extends Fragment {
 
 
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         slideshowViewModel =
@@ -68,11 +69,13 @@ public class SlideshowFragment extends Fragment {
             public void onChanged(@Nullable final List<Parcel> p) {
                 // Update the cached copy of the words in the adapter.
 
-                    parcels = p;
-                    parcelView.setAdapter(new ParcelAdapter(getContext(), parcels));
+                parcels = p;
+                parcelView.setAdapter(new ParcelAdapter(getContext(), parcels));
 
             }
         });
+
+
 
 
     /*

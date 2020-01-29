@@ -9,13 +9,43 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.userapp.R;
 
-public class ParcelViewHolder extends RecyclerView.ViewHolder{
+import Interfaces.OnItemClickListener;
+
+public class ParcelViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
 
     private final View itemView;
+
+
+    private OnItemClickListener itemClickListener;
 
     public ParcelViewHolder(@NonNull View itemView) {
         super(itemView);
         this.itemView = itemView;
+        itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
+    }
+
+
+
+    public void setItemClickListener(OnItemClickListener itemClickListener)
+    {
+        this.itemClickListener = itemClickListener;
+    }
+
+
+
+    public void onClick(View v)
+    {
+        itemClickListener.onItemClick(v,getAdapterPosition(),false);
+    }
+
+    public boolean onLongClick(View v)
+    {
+        return false;
+        /*
+        itemClickListener.onItemClick(v,getAdapterPosition(),true);
+        return true
+        * */
     }
 
     public String getMainTitle(){
