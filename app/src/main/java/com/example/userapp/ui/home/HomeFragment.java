@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,24 +49,24 @@ public class HomeFragment extends Fragment {
         });
 
          */
-        TextView textView2 = (TextView)root.findViewById(R.id.textView2);
-        textView2.setText(MemberName.getMemberAddress());
+        //TextView textView2 = (TextView)root.findViewById(R.id.textView2);
+        //textView2.setText(MemberName.getMemberAddress());
 
-        //initParcelView(root);
+        //initCurrentView(root);
 
         return root;
     }
 
-    private void initParcelView(View view) {
+    private void initCurrentView(View view) {
         memberView = view.findViewById(R.id.membersRecycleView);
         memberView.setHasFixedSize(true);
         memberView.setLayoutManager(new LinearLayoutManager(getContext()));
-        setParcelListener();
+        setCurrentListener();
     }
 
 
 
-    private void setParcelListener() {
+    private void setCurrentListener() {
         //Set listener
 
         homeViewModel.getMember().observe(this, new Observer<List<Member>>() {

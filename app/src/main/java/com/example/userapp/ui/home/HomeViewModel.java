@@ -15,23 +15,28 @@ import java.util.List;
 
 public class HomeViewModel extends AndroidViewModel {
 
-    private MutableLiveData<String> mText;
+    //private MutableLiveData<String> mText;
 
     private MemberRepository mRepository;
     private LiveData<List<Member>> mMember;
+    private LiveData<List<Member>> mAllMembers;
+
 
     public HomeViewModel(Application app) {
         super(app);
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        //mText = new MutableLiveData<>();
+        //mText.setValue("This is home fragment");
 
         mRepository = new MemberRepository(app);
         mMember = mRepository.getMember(MemberName.getMemberAddress());
+        mAllMembers = mRepository.getAllMembers();
     }
 
     LiveData<List<Member>> getMember() { return mMember; }
 
-    public LiveData<String> getText() {
-        return mText;
-    }
+    LiveData<List<Member>> getAllMembers() { return mAllMembers; }
+
+    //public LiveData<String> getText() {
+        //return mText;
+    //}
 }

@@ -60,8 +60,8 @@ public abstract class MemberRoomDB extends RoomDatabase {
                 MemberDao dao = INSTANCE.memberDao();
                 dao.deleteAll();
 
-                Member test = new Member(new Long(1),"aaa","aaa", "aaa", "aaa");
-                dao.insert(test);
+                //Member test = new Member(new Long(1),"aaa","aaa", "aaa", "aaa");
+                //dao.insert(test);
 
                 NotifyDataChange<List<Member>> dataChangeListener;
                 dataChangeListener = DB.getInstance().notifyMembersChange(new NotifyDataChange<List<Member>>() {

@@ -1,7 +1,6 @@
 package com.example.userapp.ui.gallery;
 
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,19 +8,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.userapp.DAL.DB;
-
-import com.example.userapp.DAL.MemberName;
 import com.example.userapp.Entities.Member;
 import com.example.userapp.R;
 import com.example.userapp.ui.Adapter.MemberAdapter;
@@ -29,7 +23,6 @@ import com.example.userapp.ui.Adapter.MemberAdapter;
 
 import java.util.List;
 
-import Helper.ConsoleColors;
 import Interfaces.NotifyDataChange;
 
 public class GalleryFragment extends Fragment {
