@@ -70,6 +70,7 @@ public class ParcelAdapter extends RecyclerView.Adapter<ParcelViewHolder> {
                 Intent intent= new Intent(baseContext,parcel_details.class);
                 intent.putExtra("parcel",parcel.getId());
                 intent.putExtra("adress",parcel.getAddress());
+                intent.putExtra("name",parcel.getName());
                 baseContext.startActivity(intent);
 
             }
