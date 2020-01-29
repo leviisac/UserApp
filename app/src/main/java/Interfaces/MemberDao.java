@@ -23,5 +23,8 @@ public interface MemberDao {
     @Query("SELECT * from members_table ")
     LiveData<List<Member>> getAllMembers();
 
+    @Query("SELECT * from members_table WHERE address = :s ")
+    Member getMember(String s);
+
 
 }

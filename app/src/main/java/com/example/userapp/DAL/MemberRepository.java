@@ -16,6 +16,7 @@ public class MemberRepository {
 
     private MemberDao mMemberDao;
     private LiveData<List<Member>> mAllMembers;
+    private Member mMember;
 
     // Note that in order to unit test the WordRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
@@ -25,6 +26,7 @@ public class MemberRepository {
         MemberRoomDB db = MemberRoomDB.getDatabase(application);
         mMemberDao = db.memberDao();
         mAllMembers = mMemberDao.getAllMembers();
+        //mMember= mMemberDao.getMember();
     }
 
     // Room executes all queries on a separate thread.
@@ -37,8 +39,13 @@ public class MemberRepository {
 
     // that you're not doing any long running operations on the main thread, blocking the UI.
     public void insert(Member m) {
-        ParcelRoomDB.databaseWriteExecutor.execute(() -> {
+        MemberRoomDB.databaseWriteExecutor.execute(() -> {
             mMemberDao.insert(m);
         });
+    }
+
+    public Member getMember(String name) {
+        mMember= mMemberDao.getMember(name);
+        return mMember;
     }
 }

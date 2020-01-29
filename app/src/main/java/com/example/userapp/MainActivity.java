@@ -5,12 +5,15 @@ import android.os.Bundle;
 import com.example.userapp.DAL.DB;
 import com.example.userapp.DAL.MemberRepository;
 import com.example.userapp.Entities.Member;
+import com.example.userapp.ViewModel.MainViewModel;
 import com.example.userapp.ui.gallery.GalleryFragment;
+import com.example.userapp.ui.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -33,6 +36,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+
 
 
     @Override
@@ -68,9 +72,24 @@ public class MainActivity extends AppCompatActivity {
 
         String data = getIntent().getExtras().getString("Name");
 
+
+        //MainViewModel mainViewModel;
+        //mainViewModel= ViewModelProviders.of(this).get(MainViewModel.class);
+        //mainViewModel.SetMemberName(data);
+        //Member test= mainViewModel.GetMember();
+
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.MemberTitle);
+        //navUsername.setText(test.getPhone());
         navUsername.setText(data);
+
+
+        //Bundle bundle=new Bundle();
+        //bundle.putString("name", data);
+        //set Fragmentclass Arguments
+        //HomeFragment fragobj=new HomeFragment();
+        //fragobj.setArguments(bundle);
+
 
         //Initialize db
         DB.getInstance();
