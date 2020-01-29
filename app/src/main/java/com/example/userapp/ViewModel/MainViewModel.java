@@ -25,7 +25,7 @@ public class MainViewModel extends AndroidViewModel {
     public void SetMemberName(String name)
     {
         MemberName=name;
-        mMember = mRepository.getMember(MemberName);
+        //mMember = mRepository.getMember(MemberName);
     }
     public Member GetMember()
     {

@@ -16,7 +16,7 @@ public class MemberRepository {
 
     private MemberDao mMemberDao;
     private LiveData<List<Member>> mAllMembers;
-    private Member mMember;
+    private LiveData<List<Member>> mMember;
 
     // Note that in order to unit test the WordRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
@@ -44,7 +44,7 @@ public class MemberRepository {
         });
     }
 
-    public Member getMember(String name) {
+    public LiveData<List<Member>> getMember(String name) {
         mMember= mMemberDao.getMember(name);
         return mMember;
     }

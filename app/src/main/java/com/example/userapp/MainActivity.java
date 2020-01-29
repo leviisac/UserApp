@@ -3,6 +3,7 @@ package com.example.userapp;
 import android.os.Bundle;
 
 import com.example.userapp.DAL.DB;
+import com.example.userapp.DAL.MemberName;
 import com.example.userapp.DAL.MemberRepository;
 import com.example.userapp.Entities.Member;
 import com.example.userapp.ViewModel.MainViewModel;
@@ -71,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         String data = getIntent().getExtras().getString("Name");
-
+        MemberName.setAddress(data);
+        //String newData= MemberName.getMemberAddress();
 
         //MainViewModel mainViewModel;
         //mainViewModel= ViewModelProviders.of(this).get(MainViewModel.class);
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         navUsername.setText(data);
 
 
-        //Bundle bundle=new Bundle();
+        //Bundle bundle=0new Bundle();
         //bundle.putString("name", data);
         //set Fragmentclass Arguments
         //HomeFragment fragobj=new HomeFragment();

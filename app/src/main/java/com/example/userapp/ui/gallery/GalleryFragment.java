@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.userapp.DAL.DB;
 
+import com.example.userapp.DAL.MemberName;
 import com.example.userapp.Entities.Member;
 import com.example.userapp.R;
 import com.example.userapp.ui.Adapter.MemberAdapter;
@@ -42,7 +43,8 @@ public class GalleryFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         //String name = getArguments().getString("params");
         //System.out.println(name);
-
+        //String memberaddress= MemberName.getMemberAddress();
+        //System.out.println(memberaddress);
 
         galleryViewModel =
                 ViewModelProviders.of(this).get(GalleryViewModel.class);

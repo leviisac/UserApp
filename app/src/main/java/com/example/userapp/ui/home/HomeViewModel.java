@@ -1,17 +1,35 @@
 package com.example.userapp.ui.home;
 
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+import com.example.userapp.DAL.MemberName;
+import com.example.userapp.DAL.MemberRepository;
+import com.example.userapp.Entities.Member;
+
+import java.util.List;
+
+public class HomeViewModel extends AndroidViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    private MemberRepository mRepository;
+    private LiveData<List<Member>> mMember;
+
+    public HomeViewModel(Application app) {
+        super(app);
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
+
+        mRepository = new MemberRepository(app);
+        mMember = mRepository.getMember(MemberName.getMemberAddress());
     }
+
+    LiveData<List<Member>> getMember() { return mMember; }
 
     public LiveData<String> getText() {
         return mText;
