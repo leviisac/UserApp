@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
+    Button btn;
     private FirebaseAuth mAuth;
 
     @Override
@@ -37,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        btn = (Button)findViewById(R.id.registerbtn);
 
 
 
@@ -48,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
 
@@ -84,7 +88,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+        btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
+
+
+            }
+        });
 
     }
 }
