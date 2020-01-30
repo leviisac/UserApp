@@ -12,7 +12,7 @@ import android.view.View;
 
 public class register_activity extends AppCompatActivity {
 
-    B
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
