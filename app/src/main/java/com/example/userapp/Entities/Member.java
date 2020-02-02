@@ -15,7 +15,6 @@ public class Member implements MyEntity {
     @NonNull
     @ColumnInfo(name = "id")
     private long Id;
-
     @ColumnInfo(name = "name")
     private String Name;
     @ColumnInfo(name = "lastname")
@@ -25,8 +24,16 @@ public class Member implements MyEntity {
     @ColumnInfo(name = "address")
     private String Adress;
 
+
     public Member(Long id2 ,String name, String last_name, String phone, String adress) {
         Id = id2;
+        Name = name;
+        Last_name = last_name;
+        Phone = phone;
+        Adress = adress;
+    }
+
+    public Member(String name, String last_name, String phone, String adress) {
         Name = name;
         Last_name = last_name;
         Phone = phone;

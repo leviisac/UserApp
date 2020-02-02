@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.userapp.DAL.DB;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -27,18 +28,27 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
 
     Button btn;
-    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        btn = (Button)findViewById(R.id.registerbtn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                startActivity(new Intent(LoginActivity.this, register_activity.class));
+
+            }
+        });
+
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
-        btn = (Button)findViewById(R.id.registerbtn);
+
 
 
 
@@ -59,42 +69,29 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkDB(String username, String password) {
-        mAuth = FirebaseAuth.getInstance();
+               DB.getInstance().login(username, password, (OnCompleteListener<AuthResult>) task -> {
+            if (task.isSuccessful()) {
 
+                Toast.makeText(LoginActivity.this, "Authentication succeed.",
+                        Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("Name",username);
+                startActivity(intent);
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
-        mAuth.signInWithEmailAndPassword(username, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+            } else {
 
-                            Toast.makeText(LoginActivity.this, "Authentication succeed.",
-                                    Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            intent.putExtra("Name",username);
-                            startActivity(intent);
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
-                        } else {
-
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-
-                        }
-
-                        // ...
-                    }
-                });
-
-
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-
+                Toast.makeText(LoginActivity.this, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show();
 
             }
+
+            // ...
         });
+
+
+
+
 
     }
 }

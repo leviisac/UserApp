@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Interfaces.MyEntity;
@@ -45,17 +46,22 @@ public class FirebaseListener<T extends MyEntity> {
         });
     }
 
-    public void add(final T obj, final FirebaseDB.Action<Long> action) {
+    public long add(final T obj) {
 //
+        obj.setId(System.currentTimeMillis());
+        DatabaseReference idRef = ref.child(String.valueOf(obj.getId()));
+        idRef.setValue(obj);
+        return obj.getId();
     }
 
 
-    public void remove(long id, final FirebaseDB.Action<Long> action) {
-
+    public void remove(long id) {
+        DatabaseReference idRef = ref.child(String.valueOf(id));
+        idRef.removeValue();
     }
 
 
-    public void update(final T toUpdate, final FirebaseDB.Action<Long> action) {
+    /*public void update(final T toUpdate, final FirebaseDB.Action<Long> action) {
         final String key = String.valueOf(toUpdate.getId());
 
         remove(toUpdate.getId(), new FirebaseDB.Action<Long>() {
@@ -74,7 +80,7 @@ public class FirebaseListener<T extends MyEntity> {
                 action.onProgress(status, percent);
             }
         });
-    }
+    }*/
 
     public void notifyToList(final NotifyDataChange<List<T>> notifyDataChange) {
         if (notifyDataChange == null)

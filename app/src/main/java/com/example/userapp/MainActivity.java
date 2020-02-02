@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        if(getIntent().getExtras() == null)
+            return;
+
         String data = getIntent().getExtras().getString("Name");
         //MemberName.setAddress(data);
         String newData= MemberName.getMemberAddress();
